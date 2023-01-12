@@ -1,0 +1,6 @@
+{
+  "///": {
+    "WARNING": "preprod 配置中, 凡是和 production 不一致的参数, 都不应该用于 SSG, 详见 README.md 部署 部分"
+  },
+  "origin": "https://preprod.box3.fun"
+}

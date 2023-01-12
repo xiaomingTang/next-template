@@ -1,0 +1,6 @@
+**/*.js
+**/*.mjs
+**/*.d.ts
+.next/
+out/
+public/

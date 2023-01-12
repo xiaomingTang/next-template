@@ -1,0 +1,12 @@
+# docker build -t registry-vpc.cn-hangzhou.aliyuncs.com/box3/box-web-portal:base-v2 -f Dockerfile.base .
+FROM node:16-alpine AS deps
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+RUN apk add --no-cache --virtual .build-deps alpine-sdk libc6-compat py3-pip
+WORKDIR /app
+
+COPY package.json yarn.lock* ./
+RUN YARN_CACHE_FOLDER=/root/.yarn-cache yarn --frozen-lockfile --ignore-scripts
+
+
+FROM node:16-alpine AS cache
+COPY --from=deps /root/.yarn-cache /root/.yarn-cache
